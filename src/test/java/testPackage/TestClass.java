@@ -31,4 +31,13 @@ public class TestClass {
         driver.get("https://duckduckgo.com/");
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"__next\"]/div/main/article/div[1]/div[1]/div[2]/div/header/div/section[1]/a/img")).isDisplayed());
     }
+
+    public void searchForSeleniumWebDriverAndAssertLink(){ //Workshop Task #3
+        driver.navigate().to("https://duckduckgo.com/");
+        var searchBox = driver.findElement(By.className("searchbox_input__rnFzM"));
+        searchBox.sendKeys("Selenium WebDriver");
+        searchBox.submit();
+
+        //TODO: Assert the 1st link in the search results
+    }
 }
