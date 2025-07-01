@@ -3,10 +3,13 @@ package testPackage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import java.time.Duration;
 
 @Test
 public class TestClass {
@@ -38,6 +41,10 @@ public class TestClass {
         searchBox.sendKeys("Selenium WebDriver");
         searchBox.submit();
 
-        //TODO: Assert the 1st link in the search results
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"r1-0\"]/div[2]/div/div/a")));
+
+        Assert.assertEquals(driver.findElement(By.xpath("//*[@id=\"r1-0\"]/div[2]/div/div/a")).getAttribute("href"),
+                "https://www.selenium.dev/documentation/webdriver/");
     }
 }
