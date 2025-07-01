@@ -25,13 +25,13 @@ public class TestClass {
         driver.quit();
     }
 
-    public void checkTitle(){ //Workshop Task #1
-        driver.get("https://duckduckgo.com/");
+    public void assertPageTitle(){ //Workshop Task #1
+        driver.navigate().to("https://duckduckgo.com/");
         Assert.assertEquals(driver.getTitle(),"Google");
     }
 
-    public void checkLogo(){ //Workshop Task #2
-        driver.get("https://duckduckgo.com/");
+    public void assertThatLogoIsDisplayed(){ //Workshop Task #2
+        driver.navigate().to("https://duckduckgo.com/");
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"__next\"]/div/main/article/div[1]/div[1]/div[2]/div/header/div/section[1]/a/img")).isDisplayed());
     }
 
