@@ -32,7 +32,8 @@ public class TestClass {
 
     public void assertThatLogoIsDisplayed(){ //Workshop Task #2
         driver.navigate().to("https://duckduckgo.com/");
-        Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"__next\"]/div/main/article/div[1]/div[1]/div[2]/div/header/div/section[1]/a/img")).isDisplayed());
+        By duckDuckGoLogoLocator = By.xpath("//div[contains(@class,'Desktop')]//img");
+        Assert.assertTrue(driver.findElement(duckDuckGoLogoLocator).isDisplayed());
     }
 
     public void searchForSeleniumWebDriverAndAssertLink(){ //Workshop Task #3
