@@ -38,14 +38,18 @@ public class TestClass {
 
     public void searchForSeleniumWebDriverAndAssertLink(){ //Workshop Task #3
         driver.navigate().to("https://duckduckgo.com/");
-        var searchBox = driver.findElement(By.className("searchbox_input__rnFzM"));
+
+        By searchBoxLocator = By.id("searchbox_input");
+        var searchBox = driver.findElement(searchBoxLocator);
         searchBox.sendKeys("Selenium WebDriver");
         searchBox.submit();
 
-        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"r1-0\"]/div[2]/div/div/a")));
+        By firstSearchResultLocator = By.xpath("(//a[@data-testid='result-extras-url-link'])[1]");
 
-        Assert.assertEquals(driver.findElement(By.xpath("//*[@id=\"r1-0\"]/div[2]/div/div/a")).getAttribute("href"),
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(firstSearchResultLocator));
+
+        Assert.assertEquals(driver.findElement(firstSearchResultLocator).getAttribute("href"),
                 "https://www.selenium.dev/documentation/webdriver/");
     }
 }
