@@ -3,7 +3,6 @@ package testPackage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -13,21 +12,18 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 
 @Test
-public class TestClass {
+public class ChromeTests {
     WebDriver chromeDriver;
-    WebDriver fireFoxDriver;
     By duckDuckGoSearchBoxLocator = By.id("searchbox_input");
 
     @BeforeMethod
     public void beforeMethod(){
         chromeDriver = new ChromeDriver();
-        fireFoxDriver = new FirefoxDriver();
     }
 
     @AfterMethod
     public void afterMethod(){
         chromeDriver.quit();
-        fireFoxDriver.quit();
     }
 
     public void assertPageTitle(){ //Workshop Task #1
@@ -55,22 +51,5 @@ public class TestClass {
 
         Assert.assertEquals(chromeDriver.findElement(firstSearchResultLinkLocator).getAttribute("href"),
                 "https://www.selenium.dev/documentation/webdriver/");
-    }
-
-    public void searchForTestNGAssertFourthResultText(){ //Workshop Task #4
-        fireFoxDriver.navigate().to("https://duckduckgo.com/");
-
-        var searchBox = fireFoxDriver.findElement(duckDuckGoSearchBoxLocator);
-        searchBox.sendKeys("TestNG");
-        searchBox.submit();
-
-        By fourthSearchResultTextLocator = By.xpath("(//a[@data-testid='result-title-a'])[4]/span");
-
-        WebDriverWait wait = new WebDriverWait(fireFoxDriver,Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(fourthSearchResultTextLocator));
-
-        Assert.assertEquals(fireFoxDriver.findElement(fourthSearchResultTextLocator).getText(),
-                "TestNG Tutorial");
-
     }
 }
