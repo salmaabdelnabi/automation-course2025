@@ -52,4 +52,20 @@ public class ChromeTests {
         Assert.assertEquals(chromeDriver.findElement(firstSearchResultLinkLocator).getAttribute("href"),
                 "https://www.selenium.dev/documentation/webdriver/");
     }
+
+    public void searchForCucumberIOAndAssertLink(){ //Workshop Task #5
+        chromeDriver.navigate().to("https://duckduckgo.com/");
+
+        var searchBox = chromeDriver.findElement(duckDuckGoSearchBoxLocator);
+        searchBox.sendKeys("Cucumber IO");
+        searchBox.submit();
+
+        By secondSearchResultLinkLocator = By.xpath("(//a[@data-testid='result-extras-url-link'])[2]");
+
+        WebDriverWait wait = new WebDriverWait(chromeDriver,Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(secondSearchResultLinkLocator));
+
+        Assert.assertTrue(chromeDriver.findElement(secondSearchResultLinkLocator).getAttribute("href")
+                .contains("https://www.linkedin.com"));
+    }
 }
