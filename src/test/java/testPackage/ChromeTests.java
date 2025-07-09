@@ -68,4 +68,15 @@ public class ChromeTests {
         Assert.assertTrue(chromeDriver.findElement(secondSearchResultLinkLocator).getAttribute("href")
                 .contains("https://www.linkedin.com"));
     }
+
+    public void checkCheckbox1AssertBothCheckboxesAreChecked(){ //Workshop Task #6
+        chromeDriver.navigate().to("http://the-internet.herokuapp.com/checkboxes");
+
+        By checkbox1Locator = By.xpath("//input[@type='checkbox']");
+        By checkedCheckboxesLocator = By.xpath("//input[@checked]");
+
+        chromeDriver.findElement(checkbox1Locator).click();
+
+        Assert.assertEquals(chromeDriver.findElements(checkedCheckboxesLocator).size(), 2);
+    }
 }
