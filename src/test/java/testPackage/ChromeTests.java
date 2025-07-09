@@ -19,6 +19,7 @@ public class ChromeTests {
     @BeforeMethod
     public void beforeMethod(){
         chromeDriver = new ChromeDriver();
+        chromeDriver.manage().window().maximize();
     }
 
     @AfterMethod
@@ -78,5 +79,13 @@ public class ChromeTests {
         chromeDriver.findElement(checkbox1Locator).click();
 
         Assert.assertEquals(chromeDriver.findElements(checkedCheckboxesLocator).size(), 2);
+    }
+
+    public void assertTheCountryOfTheCompanyErnstHandel(){ //Workshop Task #7
+        chromeDriver.navigate().to("https://www.w3schools.com/html/html_tables.asp");
+
+        By ernstHandelCountryLocator = By.xpath("//table[@id='customers']//td[text()='Ernst Handel']/following-sibling::td[2]");
+
+        Assert.assertEquals(chromeDriver.findElement(ernstHandelCountryLocator).getText(), "Austria");
     }
 }
