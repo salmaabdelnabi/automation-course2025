@@ -84,7 +84,7 @@ public class ChromeTests {
     public void assertTheCountryOfTheCompanyErnstHandel(){ //Workshop Task #7
         chromeDriver.navigate().to("https://www.w3schools.com/html/html_tables.asp");
 
-        By ernstHandelCountryLocator = By.xpath("//table[@id='customers']//td[text()='Ernst Handel']/following-sibling::td[2]");
+        By ernstHandelCountryLocator = By.xpath("//td[text()='Ernst Handel']/following-sibling::td[2]");
 
         Assert.assertEquals(chromeDriver.findElement(ernstHandelCountryLocator).getText(), "Austria");
     }
